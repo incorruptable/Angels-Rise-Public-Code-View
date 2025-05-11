@@ -361,3 +361,17 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Assets/Prefabs
+/Assets/Scenes
+/Assets/Audio
+*.zip
+/Assets/Settings
+/Assets/Sprites
+/Assets/DefaultVolumeProfile.asset
+/Assets/InputSystem_Actions.inputactions
+/Assets/TextMesh Pro
+/Assets/UniversalRenderPipelineGlobalSettings.asset
+/Library
+/ProjectSettings
+/Temp
+/UserSettings
