@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
 
     public bool IsDead => currentHealth <= 0;
 
+    //Handles health operations for the Enemy. If I ever make it so enemies can heal, that sort of logic would be here.
+
     public void Initialize(EnemyStats stats, EnemyAnimationManager animationManager)
     {
         this.stats = stats;

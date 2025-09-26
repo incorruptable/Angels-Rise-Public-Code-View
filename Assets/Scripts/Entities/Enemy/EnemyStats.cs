@@ -3,6 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyStats : MonoBehaviour
 {
+    //A dedicated stat handler for all required components to the Enemy Entity.
+
     [Header("Enemy Stats")]
     public int health = 1;
     public float explosionDuration = 1f;

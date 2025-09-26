@@ -159,6 +159,7 @@ public class Player : MonoBehaviour
 
     private void ChangeWeapon(WeaponFlag weaponFlag)
     {
+        //Set up for changing the weapons that exist in Weapons.cs
         switch (weaponFlag)
         {
             case WeaponFlag.Beam:
@@ -175,6 +176,8 @@ public class Player : MonoBehaviour
 
     private void LoadPlayerAppearance()
     {
+        //Pulls the information regarding player customization systems.
+        //That system handles the specific color changes the player is meant to make.
         int savedAppearance = PlayerPrefs.GetInt("PlayerColorVariant", 0);
         ApplyAppearance(savedAppearance);
     }
@@ -223,6 +226,8 @@ public class Player : MonoBehaviour
 
     public void UpdateWingPairs()
     {
+        //Updates the wings based on upgrades for player speed.
+        //Player speed only affects how quickly the player can "maneuver" on the screen. It does not affect how fast they progress through a level.
         for (int i = 0; i < wingPairs.Length; i++)
         {
             bool shouldEnable = i < playerSpeedLevel;
@@ -234,6 +239,8 @@ public class Player : MonoBehaviour
 
     #region SPEED/UPGRADE LOGIC
 
+    //While IUpgrade does exist, that only handles upgrade items and the logic behind them.
+    //This is the internal logic on the Player that handles how those upgrades apply.
     private void LoadSpeedLevel()
     {
         speedLevel = PlayerPrefs.GetInt(SpeedLevelKey, 0);
@@ -289,6 +296,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region DAMAGE/HEALTH LOGIC
+
+    //Exactly as the boiler plate states.
+
+    //This is the collision checker on if the player is hit by an enemy, hostile projectile, or an upgrade.
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy Projectile")
@@ -318,6 +329,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    //This processes the hit from a damage dealing object.
+    //This only really matters for projectiles or things tagged as such, since they can cause a variable amount of damage.
     private void ProcessHit(DamageDealer damage)
     {
         health -= damage.getDamage();
@@ -348,6 +361,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region GETTER/SETTERS
+
+    //Helper functions for getting and setting.
 
     public void SetSpeed(float speed)
     {
@@ -402,6 +417,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Utilities
+
+    //General utility functions. Playing the sound effects, handling animations.
     private void PlaySFX(AudioClip clip)
     {
         float volume = PlayerPrefs.GetFloat(PlayerPrefsKeys.SFXVolume, 0.7f);

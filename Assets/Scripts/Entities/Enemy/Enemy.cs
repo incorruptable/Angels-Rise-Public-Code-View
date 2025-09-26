@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Enemy: MonoBehaviour
 {
+    //Enemy is more complex in design than the player.
+    //It's meant to show single responsibility principle.
+    //This was done AFTER the creation of the Player, which would require significant updates and disentanglement to work properly.
     private EnemyStats stats;
     private EnemyPathing pathing;
     private EnemyFiring firing;
@@ -13,6 +16,7 @@ public class Enemy: MonoBehaviour
 
     private void Awake()
     {
+        //Pulls the appropriate components attached to the Enemy actor.
         stats = GetComponent<EnemyStats>();
         pathing = GetComponent<EnemyPathing>();
         firing = GetComponent<EnemyFiring>();

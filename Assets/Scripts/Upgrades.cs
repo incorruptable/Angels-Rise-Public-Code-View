@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Rendering.MaterialUpgrader;
 
+//Legacy code.
+//This is the Unity based method of upgrading logic. Pushes the logic into the Player script.
+
 public class Upgrades : MonoBehaviour
 {
     [SerializeField]

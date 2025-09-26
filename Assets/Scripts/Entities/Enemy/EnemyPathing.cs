@@ -27,6 +27,9 @@ public class EnemyPathing : MonoBehaviour
         }
     }
 
+    //Handles the pathing system based on a waypoint system. While there ARE some enemies that have a different pathing
+    //Those enemies will use the appropriate script.
+    //I may merge them into this script, but they're currently separate.
     public void HandlePathing()
     {
         if (waypoints == null || waypoints == null || waypointIndex >= waypoints.Count) return;

@@ -4,6 +4,10 @@ public class ParallaxPortal : MonoBehaviour
 {
     [SerializeField] GameObject linkedPortal;
 
+    //This is actually meant to be something different than it's named. It's not a Parallax.
+    //It's a reflector/portal. If something impacts the primary object, it's meant to reflect or have the item pass through another point.
+    //Some enemies may have a mirror defense or a portal defense, similar to how portals in Portal work.
+
     Vector2 entityDirection, portalNormal;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SpriteWidthDebugger : MonoBehaviour
 {
+    //Gives me the information on a sprite's size in units for debugging purposes.
     void Start()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();

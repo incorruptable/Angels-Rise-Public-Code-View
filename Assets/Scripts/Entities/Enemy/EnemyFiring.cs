@@ -11,6 +11,9 @@ public class EnemyFiring : MonoBehaviour
 
     private Weapons currentWeapon;
 
+    //Handles the firing systems of the Enemy. It ONLY handles that logic, without a tie to the animator.
+    //Even if the animation fails, it can and will still fire.
+
     public void Initialize(EnemyStats stats, EnemyAnimationManager animationManager)
     {
         this.stats = stats;

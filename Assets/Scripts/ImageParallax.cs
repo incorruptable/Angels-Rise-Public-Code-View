@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ImageParallax : MonoBehaviour
 {
-
+    //Thought process for how to handle the parallax scrolling I intend, alongside the "treadmill logic".
     private float length, startPOS;
     [SerializeField] private float scrollSpeed = 1f;
     [SerializeField] private float parallaxEff = 1f;

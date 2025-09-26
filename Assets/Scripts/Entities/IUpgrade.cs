@@ -1,3 +1,6 @@
+//Polymorphic way of handling upgrades. This is the updated and eventual intended method.
+
+
 public interface IUpgrade
 {
     void Apply(Player player);

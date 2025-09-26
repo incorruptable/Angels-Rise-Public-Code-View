@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
+    //Generic script for things meant to "deal damage", like a bullet or a moving obstacle that can collide with the player.
+
     [SerializeField] int damage = 1;
     [SerializeField] string tagCheck;
     [SerializeField] string ignoreTag;

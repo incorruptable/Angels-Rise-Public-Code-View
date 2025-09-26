@@ -49,6 +49,8 @@ public class EnemyAnimationManager : MonoBehaviour
             {
                 if(animator != null && animator.gameObject.name.Contains("Charge"))
                 {
+                    //Handles the logic behind the enemy "charging" and then firing.
+                    //Each enemy has a pre-fire animation that is effectively the "charge".
                     animator.SetBool("isCharging", true);
                     animator.Play(chargingStateName, 0, 0f);
                     Debug.Log($"Running the charging animator on {animator.gameObject.name}");
@@ -60,6 +62,8 @@ public class EnemyAnimationManager : MonoBehaviour
 
                     foreach (var clip in animator.runtimeAnimatorController.animationClips)
                     {
+                        //Checks if there's a charging animation for the object.
+                        //This is essentially just a null check because it shouldn't ever be the case where a particular enemy doesn't have the clip set.
                         if (name.Contains(clip.name.ToLower()) && !name.Contains("Charge"))
                         {
                             animator.Play(clip.name, 0, 0f);
@@ -73,6 +77,9 @@ public class EnemyAnimationManager : MonoBehaviour
 
         if(!usedAdditionalAnimator && mainAnimator != null && chargingLayerIndex != -1)
         {
+            //If the particular enemy doesn't use a secondary object for a charging point, it instead plays it on the main body.
+            //Example: The collection of light in Gundam before they fire a weapon.
+            //This would be if the gun lit up and started changing shape instead.
             mainAnimator.SetLayerWeight(chargingLayerIndex, 1f);
             mainAnimator.SetBool("isCharging", true);
             Debug.Log($"Running the charging animator on {mainAnimator.gameObject.name}");
@@ -82,6 +89,7 @@ public class EnemyAnimationManager : MonoBehaviour
 
     public void StopChargingAnimation()
     {
+        //Exactly what it says on the tin.
         bool usedAdditionalAnimator = false;
         if (additionalAnimators != null)
         {
@@ -115,6 +123,8 @@ public class EnemyAnimationManager : MonoBehaviour
     // Additional Animators Management
     public void PlayAdditionalAnimation(string animationName, int index)
     {
+        //Checks if there are additional points on the enemy to animate.
+        //IE: A tongue that does a different animation completely separate from the main body.
         if (index >= 0 && index < additionalAnimators.Length && additionalAnimators[index] != null)
         {
             additionalAnimators[index].Play(animationName);

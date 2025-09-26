@@ -62,22 +62,31 @@ public class EnemyChainMovement : MonoBehaviour
 
     private void FourCornersMovement()
     {
-        //Move between the four corners as the new head. Movement is clockwise or counter clockwise.
+        //TODO: Move between the four corners as the new head. Movement is clockwise or counter clockwise.
     }
 
     private void DetachedMovement()
     {
-        //Bounce between the four corners at random for a random number of times up to 10. Fire and then repeat.
+        //TODO: Bounce between the four corners at random for a random number of times up to 10. Fire and then repeat.
     }
 
     private int ClosestCorner()
     {
-        if (cornerPoints == null || cornerPoints.Length == 0) return -1;
+        //This function checks the closest corner on the map.
+
+        //Gives the largest possible distance on initialization for "closest distance" as a float.
         float closestDistance = float.MaxValue;
         int closestIndex = 0;
 
+        //This is the bail out if the enemy can't detect any corners for some reason. The -1 return tells me something is very much wrong.
+        if (cornerPoints == null || cornerPoints.Length == 0)
+        {
+            return -1;
+        }
+
         for (int i = 0; i < cornerPoints.Length; i++)
         {
+            //Obviously, loops through all the corners until it finds a the smallest distance to a corner.
             float distance = Vector3.Distance(transform.position, cornerPoints[i].position);
             if (distance < closestDistance)
             {
@@ -85,9 +94,10 @@ public class EnemyChainMovement : MonoBehaviour
                 closestIndex = i;
             }
         }
-
+        //Returns it as an index. This'll be used to send the enemy towards it.
         return closestIndex;
     }
+
     struct Turn
     {
         Vector2 pos;
