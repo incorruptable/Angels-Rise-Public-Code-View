@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyAnimationManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class EnemyAnimationManager : MonoBehaviour
 
     [Header("Additional Animators and Objects")]
     [SerializeField] private GameObject[] additionalObjects;
+    [SerializeField] private string chargingStateName = "Charging";
     private Animator[] additionalAnimators;
     private SpriteRenderer[] additionalSpriteRenderers;
 
@@ -45,11 +47,26 @@ public class EnemyAnimationManager : MonoBehaviour
         {
             foreach(Animator animator in additionalAnimators)
             {
-                if(animator != null)
+                if(animator != null && animator.gameObject.name.Contains("Charge"))
                 {
                     animator.SetBool("isCharging", true);
+                    animator.Play(chargingStateName, 0, 0f);
                     Debug.Log($"Running the charging animator on {animator.gameObject.name}");
                     usedAdditionalAnimator = true;
+                }
+                else if (animator != null)
+                {
+                    string objectName = animator.gameObject.name.ToLower();
+
+                    foreach (var clip in animator.runtimeAnimatorController.animationClips)
+                    {
+                        if (name.Contains(clip.name.ToLower()) && !name.Contains("Charge"))
+                        {
+                            animator.Play(clip.name, 0, 0f);
+                            Debug.Log($"Matched {clip.name} to {animator.gameObject.name}");
+                        }
+                    }
+                    var clips = animator.runtimeAnimatorController.animationClips;
                 }
             }
         }
@@ -57,6 +74,9 @@ public class EnemyAnimationManager : MonoBehaviour
         if(!usedAdditionalAnimator && mainAnimator != null && chargingLayerIndex != -1)
         {
             mainAnimator.SetLayerWeight(chargingLayerIndex, 1f);
+            mainAnimator.SetBool("isCharging", true);
+            Debug.Log($"Running the charging animator on {mainAnimator.gameObject.name}");
+            mainAnimator.Play(chargingStateName, chargingLayerIndex, 0f);
         }
     }
 
